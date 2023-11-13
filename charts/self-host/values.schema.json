@@ -56,6 +56,10 @@
                                 }
                             }
                         },
+                        "routingMethod": {
+                            "type": "string",
+                            "enum": ["Path", "Domain"]
+                        },
                         "paths": {
                             "type": "object",
                             "required": [],
@@ -65,10 +69,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -77,10 +81,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -89,10 +93,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -101,10 +105,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -113,10 +117,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -125,10 +129,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -137,10 +141,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -149,10 +153,10 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
                                 },
@@ -161,12 +165,39 @@
                                     "required": [],
                                     "properties": {
                                         "path": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         },
                                         "pathType": {
-                                            "type": "string"
+                                            "type": ["string", "null"]
                                         }
                                     }
+                                }
+                            }
+                        },
+                        "domains": {
+                            "type": "object",
+                            "required": [],
+                            "properties": {
+                                "attachments": {
+                                    "type": ["string", "null"]
+                                },
+                                "api": {
+                                    "type": ["string", "null"]
+                                },
+                                "icons": {
+                                    "type": ["string", "null"]
+                                },
+                                "notifications": {
+                                    "type": ["string", "null"]
+                                },
+                                "events": {
+                                    "type": ["string", "null"]
+                                },
+                                "sso": {
+                                    "type": ["string", "null"]
+                                },
+                                "identity": {
+                                    "type": ["string", "null"]
                                 }
                             }
                         }

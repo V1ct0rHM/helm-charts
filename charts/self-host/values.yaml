@@ -24,7 +24,10 @@ general:
       name:
       # Cluster cert issuer (ex. Let's Encrypt) name if one exists
       clusterIssuer:
-    # Ingress path configuration - The samples provided are for Nginx. Examples with other Ingress providers are in the chart Readme on GitHub
+    # You can either use Path or Domain routing
+    routingMethod: "Path"
+    # Ingress routing configuration - The samples provided are for Nginx. Examples with other Ingress providers are in the chart Readme on GitHub
+    # Paths are ignored if routingMethod is set to Domain
     paths:
       web:
         path: /(.*)
@@ -53,6 +56,15 @@ general:
       admin:
         path: /(admin[/|$]?.*)
         pathType: Prefix
+    # Used if routingMethod is set to Domain.  These should be subdomains off of the vault domain specified under general.ingress.domain
+    domains:
+      attachments:
+      api:
+      icons:
+      notifications:
+      events:
+      sso:
+      identity:
 
   # Override application container version tags.  Theses will be versioned with the chart and need not be changed in most circumstances.
   coreVersionOverride: ""

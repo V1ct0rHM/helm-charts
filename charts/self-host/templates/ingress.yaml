@@ -21,6 +21,7 @@ metadata:
 spec:
   ingressClassName: {{.Values.general.ingress.className}}
   rules:
+    {{- if eq .Values.general.ingress.routingMethod "Path" }}
     - host: {{ .Values.general.domain }}
       http:
         paths:
@@ -120,7 +121,96 @@ spec:
                 name: {{ template "bitwarden.admin" . }}
                 port:
                   number: 5000
+    {{- else }}
+    - host: {{ .Values.general.domain }}
+      http:
+        paths:
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.admin" . }}
+                port:
+                  number: 5000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.web" . }}
+                port:
+                  number: 5000
+    - host: {{ .Values.general.ingress.domains.attachments }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.attachments" . }}
+                port:
+                  number: 5000
+    - host: {{ .Values.general.ingress.domains.api }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.api" . }}
+                port:
+                  number: 5000
+    - host: {{ .Values.general.ingress.domains.icons }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.icons" . }}
+                port:
+                  number: 5000
+    - host: {{ .Values.general.ingress.domains.notifications }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.notifications" . }}
+                port:
+                  number: 5000
+    - host: {{ .Values.general.ingress.domains.events }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.events" . }}
+                port:
+                  number: 5000
+    - host: {{ .Values.general.ingress.domains.sso }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.sso" . }}
+                port:
+                  number: 5000
+    - host: {{ .Values.general.ingress.domains.identity }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "bitwarden.identity" . }}
+                port:
+                  number: 5000
 
+    {{- end }}
   tls:
     - hosts:
       - {{ .Values.general.domain }}
