@@ -58,7 +58,7 @@ spec:
 {{- end }}
           echo "Done"
         ']
-        image: "bitnami/kubectl:1.21"
+        image: "bitnami/kubectl:1.26.11"
         volumeMounts:
         - name: temp
           mountPath: "/bitwarden"
