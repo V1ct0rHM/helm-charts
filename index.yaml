@@ -3,6 +3,20 @@ entries:
   self-host:
   - apiVersion: v2
     appVersion: 2023.12.0
+    created: "2023-12-15T17:14:25.800260968Z"
+    description: A Helm chart for deploying a Bitwarden instance on Kubernetes
+    digest: a2b54d21f1ff042c94c980b5155546dc55d16ff1544a5d3913d37c9957bf8884
+    home: https://github.com/bitwarden/helm-charts/tree/main/charts/self-host
+    icon: https://raw.githubusercontent.com/bitwarden/brand/master/icons/icon-square.svg
+    maintainers:
+    - name: dept-devops
+    name: self-host
+    type: application
+    urls:
+    - https://github.com/V1ct0rHM/helm-charts/releases/download/self-host-0.1.19-Beta/self-host-0.1.19-Beta.tgz
+    version: 0.1.19-Beta
+  - apiVersion: v2
+    appVersion: 2023.12.0
     created: "2023-12-15T17:08:30.155712148Z"
     description: A Helm chart for deploying a Bitwarden instance on Kubernetes
     digest: 2a4ffa86ef4a056d6084a7efafc92e31a2560b2486bd4b3e0ebafb0d61343894
