@@ -12,8 +12,10 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  nodeSelector: {{ .Values.general.nodeSelector }}
-  tolerations: {{ .Values.general.tolerations }}
+  nodeSelector:
+    {{- toYaml . | nindent 8 }}
+  tolerations:
+    {{- toYaml . | nindent 8 }}
   replicas: 1
   strategy:
     type: "{{ .Values.component.identity.deploymentStrategy }}"
