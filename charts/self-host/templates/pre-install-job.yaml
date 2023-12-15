@@ -18,9 +18,9 @@ metadata:
     "helm.sh/hook-delete-policy": hook-succeeded,hook-failed,before-hook-creation
 spec:
   nodeSelector:
-    {{- toYaml . | nindent 8 }}
+    {{- toYaml .Values.general.nodeSelector | nindent 8 }}
   tolerations:
-    {{- toYaml . | nindent 8 }}
+    {{- toYaml .Values.general.tolerations | nindent 8 }}
   template:
     metadata:
       name: "{{ .Release.Name }}-setup"

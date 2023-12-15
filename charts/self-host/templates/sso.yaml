@@ -13,9 +13,9 @@ metadata:
 {{- end }}
 spec:
   nodeSelector:
-    {{- toYaml . | nindent 8 }}
+    {{- toYaml .Values.general.nodeSelector | nindent 8 }}
   tolerations:
-    {{- toYaml . | nindent 8 }}
+    {{- toYaml .Values.general.tolerations | nindent 8 }}
   replicas: 1
   strategy:
     type: "{{ .Values.component.sso.deploymentStrategy }}"
