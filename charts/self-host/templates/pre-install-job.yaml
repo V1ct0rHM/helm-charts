@@ -17,20 +17,20 @@ metadata:
     "helm.sh/hook-weight": "2"
     "helm.sh/hook-delete-policy": hook-succeeded,hook-failed,before-hook-creation
 spec:
-  {{- with .Values.nodeSelector }}
-  nodeSelector:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
-  {{- with .Values.tolerations }}
-  tolerations:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
   template:
     metadata:
       name: "{{ .Release.Name }}-setup"
       labels:
         app.kubernetes.io/component: pre-install-hook
     spec:
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     {{- if .Values.serviceAccount.name }}
       serviceAccountName: "{{ .Values.serviceAccount.name }}"
     {{- end }}
