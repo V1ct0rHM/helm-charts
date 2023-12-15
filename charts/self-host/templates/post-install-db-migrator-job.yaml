@@ -10,10 +10,14 @@ metadata:
     "helm.sh/hook-weight": "0"
     "helm.sh/hook-delete-policy": hook-succeeded,hook-failed,before-hook-creation
 spec:
+  {{- if .Values.general.nodeSelector }}
   nodeSelector:
     {{- toYaml .Values.general.nodeSelector | indent 8 }}
+  {{- end }}
+  {{- if .Values.general.tolerations }}
   tolerations:
     {{- toYaml .Values.general.tolerations | indent 8 }}
+  {{- end }}
   template:
     metadata:
       name: "{{ .Release.Name }}-migrator"

@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,10 +11,14 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
+  {{- if .Values.general.nodeSelector }}
   nodeSelector:
     {{- toYaml .Values.general.nodeSelector | indent 8 }}
+  {{- end }}
+  {{- if .Values.general.tolerations }}
   tolerations:
     {{- toYaml .Values.general.tolerations | indent 8 }}
+  {{- end }}
   replicas: 1
   strategy:
     type: "{{ .Values.component.admin.deploymentStrategy }}"
@@ -110,22 +113,3 @@ spec:
             volumeAttributes:
               secretProviderClass: {{ .Values.secrets.secretProviderClass }}
         {{- end }}
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ template "bitwarden.admin" . }}
-  namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/component: admin
-{{ include "bitwarden.labels" . | indent 4 }}
-{{- with .Values.component.admin.labels }}
-{{ toYaml . | indent 4 }}
-{{- end }}
-spec:
-  selector:
-    app: {{ template "bitwarden.admin" . }}
-  ports:
-  - port: 5000
-    targetPort: 5000

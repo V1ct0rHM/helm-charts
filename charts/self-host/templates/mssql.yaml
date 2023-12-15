@@ -13,10 +13,14 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
+  {{- if .Values.general.nodeSelector }}
   nodeSelector:
     {{- toYaml .Values.general.nodeSelector | indent 8 }}
+  {{- end }}
+  {{- if .Values.general.tolerations }}
   tolerations:
     {{- toYaml .Values.general.tolerations | indent 8 }}
+  {{- end }}
   serviceName: {{ template "bitwarden.mssql" . }}
   replicas: 1
   updateStrategy:
