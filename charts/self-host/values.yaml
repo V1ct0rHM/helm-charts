@@ -4,6 +4,7 @@ nameOverride: ""
 
 general:
   # Domain name for the service
+  nodeSelector: {}
   domain: "REPLACE"
   ingress:
     # Set to false if using a custom ingress

@@ -11,9 +11,9 @@ metadata:
     "helm.sh/hook-delete-policy": hook-succeeded,hook-failed,before-hook-creation
 spec:
   nodeSelector:
-    {{- toYaml .Values.general.nodeSelector | nindent 8 }}
+    {{- toYaml .Values.general.nodeSelector | indent 8 }}
   tolerations:
-    {{- toYaml .Values.general.tolerations | nindent 8 }}
+    {{- toYaml .Values.general.tolerations | indent 8 }}
   template:
     metadata:
       name: "{{ .Release.Name }}-cleanup"
