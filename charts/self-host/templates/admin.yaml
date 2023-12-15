@@ -11,13 +11,13 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  {{- if .Values.general.nodeSelector }}
+  {{- with .Values.nodeSelector }}
   nodeSelector:
-    {{- toYaml .Values.general.nodeSelector | nindent 8 }}
+    {{- toYaml . | nindent 8 }}
   {{- end }}
-  {{- if .Values.general.tolerations }}
+  {{- with .Values.tolerations }}
   tolerations:
-    {{- toYaml .Values.general.tolerations | nindent 8 }}
+    {{- toYaml . | nindent 8 }}
   {{- end }}
   replicas: 1
   strategy:
