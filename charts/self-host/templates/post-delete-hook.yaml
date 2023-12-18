@@ -16,11 +16,11 @@ spec:
       labels:
         app.kubernetes.io/component: post-delete-hook
     spec:
-    {{- with .Values.nodeSelector }}
+    {{- with .Values.general.nodeSelector }}
       nodeSelector:
     {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- with .Values.tolerations }}
+    {{- with .Values.general.tolerations }}
       tolerations:
     {{- toYaml . | nindent 8 }}
     {{- end }}
