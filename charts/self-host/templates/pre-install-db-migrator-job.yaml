@@ -20,14 +20,14 @@ spec:
       labels:
         app.kubernetes.io/component: pre-install-db-migrator-job
     spec:
-      {{- with .Values.nodeSelector }}
+    {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
+    {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
       tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+    {{- toYaml . | nindent 8 }}
+    {{- end }}
       {{- if .Values.serviceAccount.name }}
       serviceAccountName: "{{ .Values.serviceAccount.name }}"
       {{- end }}
