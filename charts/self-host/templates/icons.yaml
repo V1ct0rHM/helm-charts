@@ -12,14 +12,6 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  {{- with .Values.general.nodeSelector }}
-  nodeSelector:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
-  {{- with .Values.general.tolerations }}
-  tolerations:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
   replicas: 1
   strategy:
     type: "{{ .Values.component.icons.deploymentStrategy }}"
@@ -33,6 +25,14 @@ spec:
         app.kubernetes.io/component: icons
 {{ include "bitwarden.labels" . | indent 8 }}
     spec:
+      {{- with .Values.general.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.general.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     {{- if .Values.component.icons.podServiceAccount }}
       serviceAccount: "{{ .Values.component.icons.podServiceAccount }}"
       serviceAccountName: "{{ .Values.component.icons.podServiceAccount }}"

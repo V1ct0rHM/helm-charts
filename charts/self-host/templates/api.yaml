@@ -11,14 +11,6 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-  {{- with .Values.general.nodeSelector }}
-  nodeSelector:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
-  {{- with .Values.general.tolerations }}
-  tolerations:
-    {{- toYaml . | nindent 8 }}
-  {{- end }}
   replicas: 1
   strategy:
     type: "{{ .Values.component.api.deploymentStrategy }}"
@@ -32,6 +24,14 @@ spec:
         app.kubernetes.io/component: api
 {{ include "bitwarden.labels" . | indent 8 }}
     spec:
+      {{- with .Values.general.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.general.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     {{- if .Values.component.api.podServiceAccount }}
       serviceAccount: "{{ .Values.component.api.podServiceAccount }}"
       serviceAccountName: "{{ .Values.component.api.podServiceAccount }}"
