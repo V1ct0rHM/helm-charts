@@ -118,3 +118,21 @@ spec:
             volumeAttributes:
               secretProviderClass: {{ .Values.secrets.secretProviderClass }}
         {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "bitwarden.api" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: api
+{{ include "bitwarden.labels" . | indent 4 }}
+{{- with .Values.component.api.labels }}
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  selector:
+    app: {{ template "bitwarden.api" . }}
+  ports:
+  - port: 5000
+    targetPort: 5000
